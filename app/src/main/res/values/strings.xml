@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UdemyCourse</string>
+
+    <string-array name="my_array">
+        <item>1</item>
+        <item>12</item>
+        <item>16</item>
+        <item>20</item>
+    </string-array>
+</resources>
