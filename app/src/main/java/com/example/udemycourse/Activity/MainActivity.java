@@ -22,15 +22,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.list_view);
-
+        //Converting the string-array resource to a list
         String[] myResArray = getResources().getStringArray(R.array.my_array);
         List<String> myResArrayList = Arrays.asList(myResArray);
+
         List<SpinnerModel> spinnerModelList = new ArrayList<>();
 
+        //Creating the models
         for (int i = 0; i < 20; i++) {
             spinnerModelList.add(new SpinnerModel(myResArrayList));
         }
 
+        //Initialization of the listview adapter
         CustomAdapter adapter = new CustomAdapter(MainActivity.this, spinnerModelList);
         listView.setAdapter(adapter);
 

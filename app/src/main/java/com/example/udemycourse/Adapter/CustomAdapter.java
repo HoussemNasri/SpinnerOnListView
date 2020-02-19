@@ -22,6 +22,7 @@ import com.example.udemycourse.R;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<SpinnerModel> {
+    //List of models
     private List<SpinnerModel> spinnerModels;
     private Context context;
     private static final String TAG = "XCustomAdapter";
@@ -38,19 +39,21 @@ public class CustomAdapter extends ArrayAdapter<SpinnerModel> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         convertView = inflater.inflate(R.layout.list_view_item, parent, false);
-
+        
         Spinner spinner = convertView.findViewById(R.id.spinner_item);
 
+        //Creating the spinner adapter with data from the model
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,spinnerModels.get(position).getItems());
         spinner.setAdapter(spinnerAdapter);
-        //Retrieve The Selected Position (default = 0)
+
+        //Retrieve The Selected Position From The Model (default = 0)
         spinner.setSelection(spinnerModels.get(position).getSelectedItem());
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemSelectedAt : " + position + " selectedItem : " + i);
-                //Store The Selected Position
+                //Store The Selected Position On The Model
                 spinnerModels.get(position).setSelectedItem(i);
             }
 
@@ -59,7 +62,7 @@ public class CustomAdapter extends ArrayAdapter<SpinnerModel> {
                 Log.d(TAG, "onNothingSelected: ");
             }
         });
-
+        //Simple text
         TextView textView = convertView.findViewById(R.id.spinner_text);
         textView.setText("Spinner " + position);
 
